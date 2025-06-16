@@ -3,11 +3,11 @@ body {
   text-align: center;
   background: #f0f0f0;
 }
-form, #info {
+form, #info, #adminData {
   background: white;
   padding: 20px;
   margin: 30px auto;
-  width: 300px;
+  width: 320px;
   border-radius: 8px;
   box-shadow: 0 0 10px #ccc;
 }
@@ -18,4 +18,12 @@ input {
 }
 button {
   padding: 10px 20px;
+}
+table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+td, th {
+  padding: 10px;
 }
