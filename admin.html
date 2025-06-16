@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Admin Dashboard</h2>
+  <div id="adminData"></div>
+
+  <script src="data.js"></script>
+  <script>
+    const id = localStorage.getItem('userId');
+    const user = users[id];
+
+    if (!user || !user.isAdmin) {
+      document.body.innerHTML = "<h3>প্রবেশাধিকার নেই</h3><p>শুধুমাত্র অ্যাডমিন প্রবেশ করতে পারবে।</p>";
+    } else {
+      let html = "<table border='1' style='margin:auto'><tr><th>নাম</th><th>ইনভেস্টমেন্ট</th><th>লাভ %</th><th>দিন</th><th>মোট লাভ</th></tr>";
+
+      for (let key in users) {
+        const u = users[key];
+        if (u.isAdmin) continue;
+
+        const daysPassed = Math.floor(
+          (new Date() - new Date(u.createdAt)) / (1000 * 60 * 60 * 24)
+        );
+        const profit = (u.investment * u.profitRate * daysPassed) / 100;
+
+        html += `<tr>
+          <td>${u.name}</td>
+          <td>${u.investment}</td>
+          <td>${u.profitRate}%</td>
+          <td>${daysPassed}</td>
+          <td>${profit.toFixed(2)} টাকা</td>
+        </tr>`;
+      }
+
+      html += "</table>";
+      document.getElementById('adminData').innerHTML = html;
+    }
+  </script>
+</body>
+</html>
