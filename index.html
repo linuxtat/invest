@@ -19,9 +19,14 @@
       e.preventDefault();
       const id = userId.value.trim();
       const pw = password.value.trim();
+
       if (users[id] && users[id].password === pw) {
         localStorage.setItem('userId', id);
-        window.location.href = 'dashboard.html';
+        if (users[id].isAdmin) {
+          window.location.href = 'admin.html';
+        } else {
+          window.location.href = 'dashboard.html';
+        }
       } else {
         error.textContent = 'ভুল ID বা পাসওয়ার্ড';
       }
