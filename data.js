@@ -1,9 +1,14 @@
 const users = {
+  "admin": {
+    password: "Superpass",
+    name: "অ্যাডমিন",
+    isAdmin: true
+  },
   "user1": {
     password: "pass1",
     name: "রহিম",
     investment: 10000,
-    profitRate: 2, // percent per day
+    profitRate: 2,
     createdAt: "2024-06-01"
   },
   "user2": {
