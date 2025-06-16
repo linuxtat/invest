@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Member Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>মেম্বার লগইন</h2>
+  <form id="loginForm">
+    <input type="text" id="userId" placeholder="ID"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button type="submit">Login</button>
+  </form>
+  <p id="error"></p>
+
+  <script src="data.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const id = userId.value.trim();
+      const pw = password.value.trim();
+      if (users[id] && users[id].password === pw) {
+        localStorage.setItem('userId', id);
+        window.location.href = 'dashboard.html';
+      } else {
+        error.textContent = 'ভুল ID বা পাসওয়ার্ড';
+      }
+    });
+  </script>
+</body>
+</html>
