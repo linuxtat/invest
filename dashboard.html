@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>আপনার অ্যাকাউন্ট</h2>
+  <div id="info"></div>
+  <script src="data.js"></script>
+  <script>
+    const id = localStorage.getItem('userId');
+    const user = users[id];
+    if (!user) location.href = 'index.html';
+
+    const daysPassed = Math.floor(
+      (new Date() - new Date(user.createdAt)) / (1000 * 60 * 60 * 24)
+    );
+    const totalProfit = (user.investment * user.profitRate * daysPassed) / 100;
+
+    document.getElementById('info').innerHTML = `
+      <p>নাম: ${user.name}</p>
+      <p>ইনভেস্টমেন্ট: ${user.investment} টাকা</p>
+      <p>দৈনিক লাভের হার: ${user.profitRate}%</p>
+      <p>দিন: ${daysPassed}</p>
+      <p>মোট লাভ: ${totalProfit.toFixed(2)} টাকা</p>
+    `;
+  </script>
+</body>
+</html>
